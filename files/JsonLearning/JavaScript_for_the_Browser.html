@@ -276,6 +276,11 @@
     border-radius: 4px;
   }
   .ex-title { font-size: 14px; font-weight: 700; color: #fff; }
+  .exercise-note {
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--muted);
+  }
 
   /* Steps */
   .steps { counter-reset: step; }
@@ -312,6 +317,8 @@
     font-size: 14px;
     color: var(--text);
   }
+  .callout--debugging { margin-top: 16px; }
+  .callout--roadmap { margin-top: 20px; }
 
   /* TOC progress */
   .progress-bar {
@@ -665,7 +672,7 @@ URL.revokeObjectURL(url);</code></pre>
         </div>
         <div class="code-wrap">
           <pre><code>document.querySelectorAll('a').length</code></pre>
-          <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          <button type="button" class="copy-btn" onclick="copyCode(this)" aria-label="Copy code example">Copy</button>
         </div>
       </div>
 
@@ -706,7 +713,7 @@ URL.revokeObjectURL(url);</code></pre>
 )</code></pre>
           <button class="copy-btn" onclick="copyCode(this)">Copy</button>
         </div>
-        <p style="margin-top:8px; font-size:13px; color:var(--muted)">Replace <code>/homedetails/</code> with any pattern. Works on Amazon, eBay, Reddit, forums, Zillow.</p>
+        <p class="exercise-note">Replace <code>/homedetails/</code> with any pattern. Works on Amazon, eBay, Reddit, forums, Zillow.</p>
       </div>
 
       <div class="exercise">
@@ -750,7 +757,7 @@ console.log("Collections:", document.querySelectorAll('[data-testid="collection-
         <div class="step"><div class="step-num">4</div><div><strong>Automate gradually</strong> — only after manual steps work reliably</div></div>
         <div class="step"><div class="step-num">5</div><div><strong>Validate results</strong> — confirm output matches expectations</div></div>
       </div>
-      <div class="callout" style="margin-top:16px">In the Kindle project: counted books (115), counted collection books (33), confirmed 115 + 33 = 148 matched Amazon's total, <em>then</em> automated. Never wrote the full script until we knew exactly what we were dealing with.</div>
+      <div class="callout callout--debugging">In the Kindle project: counted books (115), counted collection books (33), confirmed 115 + 33 = 148 matched Amazon's total, <em>then</em> automated. Never wrote the full script until we knew exactly what we were dealing with.</div>
     </div>
 
     <!-- PART 7 -->
@@ -876,7 +883,7 @@ console.log("Collections:", document.querySelectorAll('[data-testid="collection-
         </div>
       </a>
 
-      <div class="callout" style="margin-top:20px">After mastering the basics, explore: Regular Expressions, JSON, Fetch API, Browser Extensions, Puppeteer/Playwright, MutationObserver, Browser Events, Data Cleaning.</div>
+      <div class="callout callout--roadmap">After mastering the basics, explore: Regular Expressions, JSON, Fetch API, Browser Extensions, Puppeteer/Playwright, MutationObserver, Browser Events, Data Cleaning.</div>
     </div>
 
     <!-- APPENDIX -->
@@ -977,12 +984,35 @@ sections.forEach(s => observer.observe(s));
 
 // Copy button
 function copyCode(btn) {
-  const pre = btn.closest('.code-wrap').querySelector('pre');
-  navigator.clipboard.writeText(pre.textContent).then(() => {
+  const code = btn.closest('.code-wrap')?.querySelector('code');
+  if (!code) return;
+
+  const showCopied = () => {
     btn.textContent = 'Copied!';
     btn.classList.add('copied');
     setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
-  });
+  };
+
+  const fallbackCopy = () => {
+    const textarea = document.createElement('textarea');
+    textarea.value = code.textContent;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      if (document.execCommand('copy')) showCopied();
+    } finally {
+      textarea.remove();
+    }
+  };
+
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(code.textContent).then(showCopied).catch(fallbackCopy);
+  } else {
+    fallbackCopy();
+  }
 }
 </script>
 

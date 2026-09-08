@@ -1,0 +1,90 @@
+{
+  "student": {
+    "name": "Yarbs",
+    "school": "George Mason University",
+    "isVeteran": true,
+    "gpa": 3.7,
+    "graduationYear": null,
+    "coursesEnrolled": ["JSON & AJAX", "Data Structures", "Java Fundamentals"]
+  },
+
+  "company": {
+    "name": "Acme Web Co",
+    "founded": 2010,
+    "isPublic": false,
+    "employees": [
+      {
+        "id": 1,
+        "firstName": "Maria",
+        "lastName": "Lopez",
+        "role": "Frontend Developer",
+        "skills": ["JavaScript", "HTML", "CSS"],
+        "contact": {
+          "email": "maria@example.com",
+          "phone": "555-0192"
+        },
+        "active": true
+      },
+      {
+        "id": 2,
+        "firstName": "James",
+        "lastName": "Chen",
+        "role": "Backend Developer",
+        "skills": ["Java", "Python", "SQL"],
+        "contact": {
+          "email": "james@example.com",
+          "phone": null
+        },
+        "active": true
+      },
+      {
+        "id": 3,
+        "firstName": "Priya",
+        "lastName": "Nair",
+        "role": "Project Manager",
+        "skills": ["Scrum", "JIRA"],
+        "contact": {
+          "email": "priya@example.com",
+          "phone": "555-0147"
+        },
+        "active": false
+      }
+    ]
+  },
+
+  "products": [
+    {
+      "sku": "A100",
+      "name": "Wireless Mouse",
+      "price": 19.99,
+      "inStock": true,
+      "tags": ["electronics", "accessories"]
+    },
+    {
+      "sku": "B200",
+      "name": "Mechanical Keyboard",
+      "price": 89.5,
+      "inStock": false,
+      "tags": ["electronics", "keyboards", "gaming"]
+    },
+    {
+      "sku": "C300",
+      "name": "USB-C Hub",
+      "price": 34.0,
+      "inStock": true,
+      "tags": ["electronics", "accessories"]
+    }
+  ],
+
+  "settings": {
+    "theme": "dark",
+    "notificationsEnabled": true,
+    "volume": 75,
+    "recentSearches": [],
+    "metadata": {
+      "lastLogin": "2026-09-01T14:32:00Z",
+      "sessionId": "a1b2c3d4",
+      "isAdmin": false
+    }
+  }
+}

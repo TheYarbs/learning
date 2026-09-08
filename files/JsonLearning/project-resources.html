@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Resources, tools, documentation, and websites for learning IT fundamentals.">
+  <title>IT Foundations | Learning Resources</title>
+  <style>
+    :root {
+      --ink: #17221b;
+      --muted: #59655c;
+      --paper: #f6f3eb;
+      --panel: #fffdf8;
+      --line: #d9d8ca;
+      --green: #236b52;
+      --green-soft: #e2efe7;
+      --orange: #c75d2a;
+      --yellow: #f4d06f;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, rgba(226, 239, 231, 0.7), transparent 38%), var(--paper);
+      color: var(--ink);
+      font-family: Georgia, 'Times New Roman', serif;
+      line-height: 1.6;
+    }
+
+    a { color: var(--green); }
+    a:hover { color: var(--orange); }
+
+    .shell { width: min(1100px, calc(100% - 32px)); margin: 0 auto; }
+
+    header { padding: 64px 0 42px; border-bottom: 1px solid var(--line); }
+    .eyebrow { margin: 0 0 12px; color: var(--orange); font: 700 0.78rem/1.2 Arial, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; }
+    h1 { max-width: 760px; margin: 0 0 16px; font-size: clamp(2.8rem, 8vw, 5.2rem); line-height: 0.98; letter-spacing: -0.04em; }
+    h2 { margin: 0 0 16px; font-size: 1.8rem; line-height: 1.1; }
+    h3 { margin: 0 0 6px; color: var(--green); font-size: 1.2rem; }
+    .intro { max-width: 720px; color: var(--muted); font-size: 1.15rem; }
+    .nav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .nav a { padding: 8px 12px; border: 1px solid var(--green); border-radius: 999px; text-decoration: none; font: 700 0.82rem Arial, sans-serif; }
+
+    main { padding: 42px 0 72px; }
+    section { margin-top: 48px; }
+    section:first-child { margin-top: 0; }
+    .section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 18px; border-bottom: 2px solid var(--ink); }
+    .section-heading span { color: var(--muted); font: 700 0.72rem Arial, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .card { padding: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
+    .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+    .card ul { padding-left: 20px; margin: 10px 0 0; }
+    .card li + li { margin-top: 6px; }
+    .card small { display: block; color: var(--muted); }
+
+    .resource-list { display: grid; gap: 10px; }
+    .resource { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 15px 18px; background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--green); border-radius: 6px; }
+    .resource strong { display: block; }
+    .resource span { color: var(--muted); font-size: 0.92rem; }
+    .resource-label { align-self: start; padding: 4px 7px; background: var(--yellow); border-radius: 4px; color: var(--ink); font: 700 0.68rem Arial, sans-serif; white-space: nowrap; }
+
+    .callout { padding: 16px 20px; background: var(--green-soft); border-left: 5px solid var(--green); }
+    code { padding: 2px 5px; background: var(--green-soft); border-radius: 3px; color: var(--green); }
+    pre { overflow-x: auto; padding: 16px; background: #202923; color: #edf4ed; border-radius: 6px; font: 0.88rem/1.6 'SFMono-Regular', Consolas, monospace; }
+
+    footer { padding: 26px 0 42px; border-top: 1px solid var(--line); color: var(--muted); }
+
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: 1fr; }
+      .section-heading { display: block; }
+      .section-heading span { display: block; margin-bottom: 8px; }
+      .resource { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell">
+      <p class="eyebrow">IT Foundations | Learn, practice, explain</p>
+      <h1>Learning Resources</h1>
+      <p class="intro">Use this page when you need documentation, tools, examples, or a next step. Start with the local lessons, then use official documentation for the concept you are practicing.</p>
+      <nav class="nav" aria-label="Project navigation">
+        <a href="master.html">Master course</a>
+        <a href="../../README.md">Workspace README</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section aria-labelledby="start">
+      <div class="section-heading"><h2 id="start">Start with this workspace</h2><span>Local material</span></div>
+      <div class="grid">
+        <article class="card"><h3>Master course</h3><p><a href="master.html">Open master.html</a> for the sequence, embedded lessons, project milestones, and calendar downloads.</p></article>
+        <article class="card"><h3>Practice plan</h3><p><a href="master.html">Open the master course</a> for the lesson order, exercises, and calendar downloads.</p></article>
+        <article class="card"><h3>Practice data</h3><p>Use <a href="learn-json.json">learn-json.json</a>, <a href="../datasets/airports.json">airports.json</a>, and <a href="learn-json-annotated.js">the annotated JavaScript</a> for data exercises.</p></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="setup">
+      <div class="section-heading"><h2 id="setup">Setup and workflow</h2><span>Before coding</span></div>
+      <div class="resource-list">
+        <div class="resource"><div><strong><a href="https://code.visualstudio.com/docs" target="_blank" rel="noopener noreferrer">VS Code Documentation</a></strong><span>Editor basics, extensions, terminals, and workspace settings.</span></div><span class="resource-label">START</span></div>
+        <div class="resource"><div><strong><a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank" rel="noopener noreferrer">Live Server</a></strong><span>Serve the project over localhost and reload the browser as you work.</span></div><span class="resource-label">TOOL</span></div>
+        <div class="resource"><div><strong><a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener noreferrer">Pro Git Book</a></strong><span>Learn repositories, commits, branches, remotes, and practical Git workflows.</span></div><span class="resource-label">FREE</span></div>
+        <div class="resource"><div><strong><a href="https://www.python.org/" target="_blank" rel="noopener noreferrer">Python</a></strong><span>Useful later for automation, APIs, and the optional backend track.</span></div><span class="resource-label">LATER</span></div>
+      </div>
+      <div class="callout"><strong>Local server:</strong> from the workspace root, run <code>python3 -m http.server 8000</code>, then open <code>http://localhost:8000/files/JsonLearning/master.html</code>.</div>
+    </section>
+
+    <section aria-labelledby="web">
+      <div class="section-heading"><h2 id="web">HTML and CSS</h2><span>Structure and design</span></div>
+      <div class="resource-list">
+        <div class="resource"><div><strong><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content" target="_blank" rel="noopener noreferrer">MDN: Structuring Content with HTML</a></strong><span>Semantic elements, document structure, links, images, and accessible content.</span></div><span class="resource-label">MDN</span></div>
+        <div class="resource"><div><strong><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics" target="_blank" rel="noopener noreferrer">MDN: CSS Styling Basics</a></strong><span>Selectors, the cascade, box model, colors, typography, and layout foundations.</span></div><span class="resource-label">MDN</span></div>
+        <div class="resource"><div><strong><a href="https://flexboxfroggy.com/" target="_blank" rel="noopener noreferrer">Flexbox Froggy</a></strong><span>A short interactive way to practice Flexbox alignment and direction.</span></div><span class="resource-label">PRACTICE</span></div>
+        <div class="resource"><div><strong><a href="https://cssgridgarden.com/" target="_blank" rel="noopener noreferrer">Grid Garden</a></strong><span>Practice CSS Grid placement through a small visual game.</span></div><span class="resource-label">PRACTICE</span></div>
+        <div class="resource"><div><strong><a href="https://validator.w3.org/" target="_blank" rel="noopener noreferrer">W3C HTML Validator</a></strong><span>Check document structure and catch invalid markup.</span></div><span class="resource-label">CHECK</span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="javascript">
+      <div class="section-heading"><h2 id="javascript">JavaScript, JSON, and the DOM</h2><span>Make it work</span></div>
+      <div class="resource-list">
+        <div class="resource"><div><strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank" rel="noopener noreferrer">MDN: JavaScript Guide</a></strong><span>Variables, functions, objects, arrays, modules, errors, and asynchronous code.</span></div><span class="resource-label">REFERENCE</span></div>
+        <div class="resource"><div><strong><a href="https://javascript.info/" target="_blank" rel="noopener noreferrer">javascript.info</a></strong><span>A structured JavaScript textbook covering fundamentals through browser APIs.</span></div><span class="resource-label">COURSE</span></div>
+        <div class="resource"><div><strong><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector" target="_blank" rel="noopener noreferrer">querySelector()</a></strong><span>Find the elements your JavaScript needs to read or update.</span></div><span class="resource-label">DOM</span></div>
+        <div class="resource"><div><strong><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank" rel="noopener noreferrer">localStorage</a></strong><span>Persist watched, favorite, rating, and theme state across refreshes.</span></div><span class="resource-label">STATE</span></div>
+        <div class="resource"><div><strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON" target="_blank" rel="noopener noreferrer">JSON on MDN</a></strong><span>Understand parsing, stringifying, valid syntax, and data exchange.</span></div><span class="resource-label">DATA</span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="apis">
+      <div class="section-heading"><h2 id="apis">APIs and sample data</h2><span>Add real data later</span></div>
+      <div class="resource-list">
+        <div class="resource"><div><strong><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank" rel="noopener noreferrer">MDN: Fetch API</a></strong><span>Make network requests and handle response, loading, empty, and error states.</span></div><span class="resource-label">API</span></div>
+        <div class="resource"><div><strong><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview" target="_blank" rel="noopener noreferrer">HTTP Overview on MDN</a></strong><span>Understand requests, responses, status codes, headers, and clients before using authenticated APIs.</span></div><span class="resource-label">LATER</span></div>
+        <div class="resource"><div><strong><a href="https://jsonplaceholder.typicode.com/" target="_blank" rel="noopener noreferrer">JSONPlaceholder</a></strong><span>A safe fake API for practicing requests before using a real service.</span></div><span class="resource-label">PRACTICE</span></div>
+        <div class="resource"><div><strong><a href="https://httpbin.org/" target="_blank" rel="noopener noreferrer">httpbin</a></strong><span>Inspect request methods, headers, status codes, and response behavior.</span></div><span class="resource-label">TEST</span></div>
+      </div>
+      <pre><code>async function loadsamples() {
+  const response = await fetch('./learn-json.json');
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  return response.json();
+}</code></pre>
+    </section>
+
+    <section aria-labelledby="debug">
+      <div class="section-heading"><h2 id="debug">Debugging, accessibility, and quality</h2><span>Make it reliable</span></div>
+      <div class="resource-list">
+        <div class="resource"><div><strong><a href="https://developer.chrome.com/docs/devtools/" target="_blank" rel="noopener noreferrer">Chrome DevTools</a></strong><span>Inspect elements, read console errors, monitor requests, and test responsive layouts.</span></div><span class="resource-label">TOOLS</span></div>
+        <div class="resource"><div><strong><a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener noreferrer">WebAIM Contrast Checker</a></strong><span>Check whether text and interface colors are readable.</span></div><span class="resource-label">A11Y</span></div>
+        <div class="resource"><div><strong><a href="https://wave.webaim.org/" target="_blank" rel="noopener noreferrer">WAVE Accessibility Evaluation Tool</a></strong><span>Find common accessibility issues in a rendered page.</span></div><span class="resource-label">A11Y</span></div>
+        <div class="resource"><div><strong><a href="https://web.dev/measure/" target="_blank" rel="noopener noreferrer">PageSpeed Insights</a></strong><span>Review performance, accessibility, best practices, and SEO signals.</span></div><span class="resource-label">AUDIT</span></div>
+        <div class="resource"><div><strong><a href="https://playwright.dev/docs/intro" target="_blank" rel="noopener noreferrer">Playwright</a></strong><span>Add browser tests after the application works manually.</span></div><span class="resource-label">LATER</span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="publish">
+      <div class="section-heading"><h2 id="publish">Git, deployment, and sharing</h2><span>Finish the project</span></div>
+      <div class="grid">
+        <article class="card"><h3>Version control</h3><ul><li><a href="https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository" target="_blank" rel="noopener noreferrer">Create a Git repository</a></li><li><a href="https://docs.github.com/en/get-started/quickstart" target="_blank" rel="noopener noreferrer">GitHub Quickstart</a></li></ul></article>
+        <article class="card"><h3>Deploy</h3><ul><li><a href="https://docs.github.com/en/pages" target="_blank" rel="noopener noreferrer">GitHub Pages</a></li><li><a href="https://docs.netlify.com/welcome/" target="_blank" rel="noopener noreferrer">Netlify Docs</a></li></ul></article>
+        <article class="card"><h3>Present</h3><ul><li><a href="https://www.makeareadme.com/" target="_blank" rel="noopener noreferrer">README guide</a></li><li><a href="https://choosealicense.com/" target="_blank" rel="noopener noreferrer">Choose a license</a></li></ul></article>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="shell">Use the official documentation first, then return to the course and apply one idea at a time.</div></footer>
+</body>
+</html>

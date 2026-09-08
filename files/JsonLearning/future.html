@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Future SysAdmin and DevOps learning roadmap with concepts, projects, and resources.">
+  <title>Future Roadmap | SysAdmin and DevOps</title>
+  <style>
+    :root {
+      --ink: #17221b;
+      --muted: #59655c;
+      --paper: #f6f3eb;
+      --panel: #fffdf8;
+      --line: #d9d8ca;
+      --green: #236b52;
+      --green-soft: #e2efe7;
+      --orange: #c75d2a;
+      --yellow: #f4d06f;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; background: linear-gradient(135deg, rgba(226, 239, 231, 0.7), transparent 38%), var(--paper); color: var(--ink); font-family: Georgia, 'Times New Roman', serif; line-height: 1.6; }
+    a { color: var(--green); }
+    a:hover { color: var(--orange); }
+    .shell { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 64px 0 42px; border-bottom: 1px solid var(--line); }
+    .eyebrow { margin: 0 0 12px; color: var(--orange); font: 700 0.78rem/1.2 Arial, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; }
+    h1 { max-width: 780px; margin: 0 0 16px; font-size: clamp(2.8rem, 8vw, 5.2rem); line-height: 0.98; letter-spacing: -0.04em; }
+    h2 { margin: 0 0 16px; font-size: 1.8rem; line-height: 1.1; }
+    h3 { margin: 0 0 6px; color: var(--green); font-size: 1.2rem; }
+    .intro { max-width: 760px; color: var(--muted); font-size: 1.15rem; }
+    .nav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .nav a { padding: 8px 12px; border: 1px solid var(--green); border-radius: 999px; text-decoration: none; font: 700 0.82rem Arial, sans-serif; }
+    main { padding: 42px 0 72px; }
+    section { margin-top: 48px; }
+    section:first-child { margin-top: 0; }
+    .section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 18px; border-bottom: 2px solid var(--ink); }
+    .section-heading span { color: var(--muted); font: 700 0.72rem Arial, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .card { padding: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
+    .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+    .card ul { padding-left: 20px; margin: 10px 0 0; }
+    .card li + li { margin-top: 6px; }
+    .card small { display: block; color: var(--muted); }
+    .sequence { display: grid; gap: 10px; }
+    .phase { display: grid; grid-template-columns: 64px 1fr; gap: 16px; padding: 18px; background: var(--panel); border-left: 5px solid var(--green); }
+    .phase-number { color: var(--orange); font: 700 1.4rem Arial, sans-serif; }
+    .phase p { margin: 0; color: var(--muted); }
+    .callout { padding: 16px 20px; background: var(--green-soft); border-left: 5px solid var(--green); }
+    .resource-list { display: grid; gap: 10px; }
+    .resource { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 15px 18px; background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--green); border-radius: 6px; }
+    .resource strong { display: block; }
+    .resource span { color: var(--muted); font-size: 0.92rem; }
+    .tag { align-self: start; padding: 4px 7px; background: var(--yellow); border-radius: 4px; color: var(--ink); font: 700 0.68rem Arial, sans-serif; white-space: nowrap; }
+    footer { padding: 26px 0 42px; border-top: 1px solid var(--line); color: var(--muted); }
+    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } .section-heading { display: block; } .section-heading span { display: block; margin-bottom: 8px; } .resource { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell">
+      <p class="eyebrow">After the web foundation</p>
+      <h1>Future SysAdmin and DevOps Roadmap</h1>
+      <p class="intro">After you complete the beginner foundations, this is the next path: turn basic programming and computer knowledge into repeatable operational skill. Build systems, observe them, secure them, break them safely, and recover them.</p>
+      <nav class="nav" aria-label="Roadmap navigation">
+        <a href="master.html">Master course</a>
+        <a href="project-resources.html">Project resources</a>
+        <a href="project-resources.html">Practice resources</a>
+        <a href="../../README.md">Workspace README</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section aria-labelledby="principles">
+      <div class="section-heading"><h2 id="principles">The operating mindset</h2><span>What to practice</span></div>
+      <div class="grid">
+        <article class="card"><h3>Automation over repetition</h3><p>If you perform the same task twice, start asking how to script it. Bash, Python, Terraform, and Ansible are tools for turning memory into systems.</p></article>
+        <article class="card"><h3>Evidence over assumption</h3><p>Use logs, metrics, traces, request IDs, exit codes, and configuration diffs. “It seems down” is a starting question, not a diagnosis.</p></article>
+        <article class="card"><h3>Recovery over heroics</h3><p>Practice backups, rollback plans, runbooks, least privilege, and incident reviews before a real outage forces you to learn them.</p></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="sequence">
+      <div class="section-heading"><h2 id="sequence">Recommended sequence</h2><span>Learn in layers</span></div>
+      <div class="sequence">
+        <article class="phase"><div class="phase-number">01</div><div><h3>Linux administration</h3><p>Processes, services, permissions, users, filesystems, package management, systemd, SSH, Bash, logs, and scheduled jobs.</p></div></article>
+        <article class="phase"><div class="phase-number">02</div><div><h3>Networking fundamentals</h3><p>TCP/IP, DNS, HTTP, TLS, routing, subnets, NAT, firewalls, load balancing, VPNs, and troubleshooting with curl, dig, ss, and traceroute.</p></div></article>
+        <article class="phase"><div class="phase-number">03</div><div><h3>Cloud operations</h3><p>Identity and access, regions, availability zones, virtual networks, storage, compute, backups, budgets, tagging, and shared-responsibility security.</p></div></article>
+        <article class="phase"><div class="phase-number">04</div><div><h3>Infrastructure as Code</h3><p>Terraform state, modules, variables, outputs, plans, drift, remote state, reviewable changes, and safe destroy/recreate workflows.</p></div></article>
+        <article class="phase"><div class="phase-number">05</div><div><h3>Containers and orchestration</h3><p>Dockerfiles, images, registries, volumes, networks, health checks, Kubernetes objects, deployments, services, config, secrets, and probes.</p></div></article>
+        <article class="phase"><div class="phase-number">06</div><div><h3>Observability and reliability</h3><p>Metrics, logs, traces, dashboards, alert quality, SLOs, SLIs, error budgets, capacity planning, and incident response.</p></div></article>
+        <article class="phase"><div class="phase-number">07</div><div><h3>Security and delivery</h3><p>Secrets management, patching, dependency scanning, image scanning, IAM review, CI/CD, artifact promotion, policy as code, and supply-chain security.</p></div></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="concepts">
+      <div class="section-heading"><h2 id="concepts">Concepts worth learning next</h2><span>Build your vocabulary</span></div>
+      <div class="grid">
+        <article class="card"><h3>Linux and shell</h3><ul><li>Processes, signals, and exit codes</li><li>systemd and service health</li><li>Permissions, sudo, and SSH keys</li><li>Bash functions and safe scripts</li></ul></article>
+        <article class="card"><h3>Networking</h3><ul><li>DNS resolution and records</li><li>HTTP status codes and TLS</li><li>Subnets, routes, and security groups</li><li>Reverse proxies and load balancers</li></ul></article>
+        <article class="card"><h3>Cloud operations</h3><ul><li>IAM roles and least privilege</li><li>Budgets, tags, and cost ownership</li><li>Backups and disaster recovery</li><li>High availability and failure domains</li></ul></article>
+        <article class="card"><h3>Infrastructure as Code</h3><ul><li>Terraform plan versus apply</li><li>State and drift</li><li>Reusable modules</li><li>Peer-reviewed infrastructure changes</li></ul></article>
+        <article class="card"><h3>Containers</h3><ul><li>Image layers and registries</li><li>Container networking and storage</li><li>Health checks and resource limits</li><li>Immutable deployment patterns</li></ul></article>
+        <article class="card"><h3>Operations</h3><ul><li>Logs, metrics, and traces</li><li>Alerts that lead to action</li><li>Runbooks and incident timelines</li><li>Post-incident learning without blame</li></ul></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="projects">
+      <div class="section-heading"><h2 id="projects">Projects that will teach you</h2><span>Portfolio evidence</span></div>
+      <div class="resource-list">
+        <div class="resource"><div><strong>1. Harden and deploy a static site</strong><span>Use GitHub Pages or Netlify, add a custom domain later, run an accessibility/performance audit, and document the deployment.</span></div><span class="tag">NOW</span></div>
+        <div class="resource"><div><strong>2. Containerize a small service</strong><span>Write a Dockerfile, build an image, add a health endpoint, run it locally, and publish the image to a registry.</span></div><span class="tag">NEXT</span></div>
+        <div class="resource"><div><strong>3. Provision a lab with Terraform</strong><span>Create a small local or cloud environment, store the code in Git, review the plan, apply it, and destroy it safely.</span></div><span class="tag">NEXT</span></div>
+        <div class="resource"><div><strong>4. Build a monitoring lab</strong><span>Run a service with Prometheus and Grafana, create one useful dashboard, and trigger an alert from a deliberate failure.</span></div><span class="tag">LATER</span></div>
+        <div class="resource"><div><strong>5. Write an incident runbook</strong><span>Document symptoms, checks, escalation, rollback, recovery, and verification for one failure mode in your lab.</span></div><span class="tag">LATER</span></div>
+        <div class="resource"><div><strong>6. Build a CI pipeline</strong><span>Run formatting, tests, security checks, and a deployment preview on every pull request.</span></div><span class="tag">LATER</span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="resources">
+      <div class="section-heading"><h2 id="resources">Reliable resources</h2><span>Prefer official docs</span></div>
+      <div class="resource-list">
+        <div class="resource"><div><strong><a href="https://linuxjourney.com/" target="_blank" rel="noopener noreferrer">Linux Journey</a></strong><span>Gentle, interactive Linux fundamentals.</span></div><span class="tag">FREE</span></div>
+        <div class="resource"><div><strong><a href="https://explainshell.com/" target="_blank" rel="noopener noreferrer">Explain Shell</a></strong><span>Break down unfamiliar shell commands before running them.</span></div><span class="tag">TOOL</span></div>
+        <div class="resource"><div><strong><a href="https://developer.hashicorp.com/terraform/tutorials" target="_blank" rel="noopener noreferrer">Terraform Tutorials</a></strong><span>Official Infrastructure as Code practice from HashiCorp.</span></div><span class="tag">OFFICIAL</span></div>
+        <div class="resource"><div><strong><a href="https://docs.docker.com/get-started/" target="_blank" rel="noopener noreferrer">Docker Get Started</a></strong><span>Official containers, images, Dockerfiles, and Compose guidance.</span></div><span class="tag">OFFICIAL</span></div>
+        <div class="resource"><div><strong><a href="https://kubernetes.io/docs/tutorials/" target="_blank" rel="noopener noreferrer">Kubernetes Tutorials</a></strong><span>Official orchestration concepts and hands-on walkthroughs.</span></div><span class="tag">OFFICIAL</span></div>
+        <div class="resource"><div><strong><a href="https://sre.google/books/" target="_blank" rel="noopener noreferrer">Google SRE Books</a></strong><span>Free books on reliability, operations, monitoring, and incident response.</span></div><span class="tag">FREE</span></div>
+        <div class="resource"><div><strong><a href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener noreferrer">OWASP Top 10</a></strong><span>Application security risks to understand as you build web and API systems.</span></div><span class="tag">SECURITY</span></div>
+        <div class="resource"><div><strong><a href="https://12factor.net/" target="_blank" rel="noopener noreferrer">The Twelve-Factor App</a></strong><span>Practical principles for deployable, observable, configurable services.</span></div><span class="tag">REFERENCE</span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="order">
+      <div class="section-heading"><h2 id="order">A realistic order for you</h2><span>Do not rush the layers</span></div>
+      <div class="callout"><strong>Recommended next move:</strong> Complete the beginner foundations and make one clean deployment. Then spend a focused block of time on Linux and networking, build a Dockerized service, learn Terraform, and only then move into Kubernetes. Cloud certifications become more useful when every service connects to something you have actually built and operated.</div>
+    </section>
+  </main>
+
+  <footer><div class="shell">The goal is not to memorize every tool. It is to understand systems well enough to operate them calmly.</div></footer>
+</body>
+</html>

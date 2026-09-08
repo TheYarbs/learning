@@ -310,6 +310,8 @@
         <a href="files/JsonLearning/JavaScript_for_the_Browser.html">Browser guide</a>
         <a href="files/JsonLearning/Browser_Scraping_Academy_Enhanced.html">Scraping reference</a>
         <a href="files/datasets/airports.json">Airport data</a>
+        <a href="test/movie_watch_hub_workbook_v1.md">Movie workbook</a>
+        <a href="test/learning_course.html">Course resource hub</a>
       </nav>
     </div>
   </header>
@@ -384,6 +386,46 @@
       </div>
     </section>
 
+    <section aria-labelledby="course-outline">
+      <div class="section-heading">
+        <h2 id="course-outline">Combined course outline</h2>
+        <span>203 web topics plus practical extensions</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>1. Web foundations</h3>
+          <p>How the web works, browser tools, project structure, HTML semantics, forms, accessibility, CSS layout, responsive design, and debugging.</p>
+          <p><a href="test/movie_watch_hub_workbook_v1.md">Open the 203-topic workbook</a></p>
+        </article>
+        <article class="card">
+          <h3>2. JavaScript and JSON</h3>
+          <p>Variables, functions, arrays, objects, JSON, DOM selection, events, rendering, filtering, state, and localStorage.</p>
+          <p><a href="files/JsonLearning/01-json-basics.html">Start JSON Basics</a></p>
+        </article>
+        <article class="card">
+          <h3>3. APIs and browser automation</h3>
+          <p>Fetch, async/await, error states, API authentication, webhooks, scraping, exports, and reliable condition-based automation.</p>
+          <p><a href="files/JsonLearning/JavaScript_for_the_Browser.html">Study browser JavaScript</a></p>
+        </article>
+        <article class="card">
+          <h3>4. Python integration</h3>
+          <p>Python fundamentals, requests, Flask, environment variables, Discord bots, and connecting API data to useful actions.</p>
+          <p><a href="test/learning_course.html#sec-python">View Python resources</a></p>
+        </article>
+        <article class="card">
+          <h3>5. Cloud administration</h3>
+          <p>Linux, cloud services, identity, networking, monitoring, Terraform, Git, Bash, and hands-on AWS or Azure administration.</p>
+          <p><a href="test/learning_course.html#sec-cloud">View cloud resources</a></p>
+        </article>
+        <article class="card">
+          <h3>6. Containers and delivery</h3>
+          <p>Docker, Kubernetes, Ansible, CI/CD, deployment, performance, security, documentation, and portfolio-ready projects.</p>
+          <p><a href="test/learning_course.html#sec-free">View free labs</a></p>
+        </article>
+      </div>
+      <div class="callout--debugging callout">Use the workbook for the detailed web sequence. Use the JsonLearning lessons for hands-on data and browser practice. Treat the supplied course hub as a resource directory, not as a second competing order.</div>
+    </section>
+
     <section aria-labelledby="projects">
       <div class="section-heading">
         <h2 id="projects">Project milestones</h2>
@@ -409,7 +451,8 @@
           <label for="start-date">Plan start date
             <input id="start-date" type="date">
           </label>
-          <button id="download-calendar" type="button">Download .ics file</button>
+          <button id="download-calendar" type="button">Download 7-day .ics</button>
+          <button id="download-course-calendar" type="button">Download full course .ics</button>
         </div>
         <p class="calendar-note">The downloaded .ics file works with Apple Calendar and can also be imported into Google Calendar. The individual links below open Google Calendar directly.</p>
         <div id="calendar-events" class="calendar-events" aria-live="polite"></div>
@@ -508,9 +551,30 @@
       }
     ];
 
+    const fullCourseEvents = [
+      ['Web foundations: browser and project setup', 'Learn the client, server, file system, DevTools, and project structure.'],
+      ['HTML foundations', 'Practice document structure, elements, attributes, links, images, paths, forms, and semantic HTML.'],
+      ['CSS foundations', 'Practice selectors, box model, typography, Flexbox, Grid, responsive design, and accessible focus states.'],
+      ['JavaScript core', 'Practice variables, data types, arrays, objects, functions, conditions, loops, and debugging.'],
+      ['DOM applications', 'Select elements, handle events, render lists, add and remove items, filter results, and manage state.'],
+      ['JSON and browser data', 'Complete JSON Basics, parse and stringify data, load JSON, and handle loading/error states.'],
+      ['Movie Watch Hub project', 'Build dynamic movie rendering, search, filters, favorites, persistence, and JSON export.'],
+      ['APIs and async JavaScript', 'Use fetch, async/await, API responses, authentication concepts, pagination, and debouncing.'],
+      ['Browser scraping and exports', 'Practice DOM extraction, deduplication, CSV escaping, downloads, and responsible scraping.'],
+      ['Webhooks and integrations', 'Understand pull versus push, test a webhook, and connect an API event to a useful destination.'],
+      ['Python foundations', 'Learn Python variables, collections, functions, conditions, loops, and file handling.'],
+      ['Python API projects', 'Use requests, environment variables, Flask, and a small API-driven automation project.'],
+      ['Cloud administration foundations', 'Review Linux, identity, networking, storage, monitoring, and cloud service fundamentals.'],
+      ['Infrastructure as Code', 'Learn Git and Terraform by provisioning a small, documented cloud or local environment.'],
+      ['Containers', 'Build and run Docker images, compose services, and inspect container logs and networking.'],
+      ['Kubernetes and operations', 'Deploy a small application, expose it, inspect health, and practice safe configuration changes.'],
+      ['Professional delivery', 'Add tests, accessibility checks, documentation, deployment, security review, and a portfolio case study.']
+    ].map(([title, description]) => ({ title, description }));
+
     const startDateInput = document.querySelector('#start-date');
     const calendarEvents = document.querySelector('#calendar-events');
     const downloadCalendarButton = document.querySelector('#download-calendar');
+    const downloadCourseCalendarButton = document.querySelector('#download-course-calendar');
 
     function addDays(date, amount) {
       const result = new Date(date);
@@ -546,9 +610,9 @@
         .replace(/\r?\n/g, '\\n');
     }
 
-    function getCalendarEvents() {
+    function getCalendarEvents(events = studyEvents) {
       const startDate = fromDateKey(startDateInput.value);
-      return studyEvents.map((event, index) => ({
+      return events.map((event, index) => ({
         ...event,
         date: addDays(startDate, index)
       }));
@@ -590,7 +654,7 @@
       });
     }
 
-    function downloadIcsFile() {
+    function downloadIcsFile(events, filename) {
       const lines = [
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
@@ -599,7 +663,7 @@
         'METHOD:PUBLISH'
       ];
 
-      getCalendarEvents().forEach((event, index) => {
+      getCalendarEvents(events).forEach((event, index) => {
         const start = toDateKey(event.date);
         const end = toDateKey(addDays(event.date, 1));
         lines.push(
@@ -619,7 +683,7 @@
       const url = URL.createObjectURL(file);
       const link = document.createElement('a');
       link.href = url;
-      link.download = 'learning-roadmap.ics';
+      link.download = filename;
       link.click();
       URL.revokeObjectURL(url);
     }
@@ -629,7 +693,8 @@
     const localDay = String(today.getDate()).padStart(2, '0');
     startDateInput.value = `${today.getFullYear()}-${localMonth}-${localDay}`;
     startDateInput.addEventListener('change', renderCalendarEvents);
-    downloadCalendarButton.addEventListener('click', downloadIcsFile);
+    downloadCalendarButton.addEventListener('click', () => downloadIcsFile(studyEvents, 'learning-roadmap-7-day.ics'));
+    downloadCourseCalendarButton.addEventListener('click', () => downloadIcsFile(fullCourseEvents, 'learning-course-full.ics'));
     renderCalendarEvents();
   </script>
 </body>

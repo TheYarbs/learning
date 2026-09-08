@@ -306,10 +306,10 @@
       <p class="intro">Use this page as the home base for learning HTML, CSS, JavaScript, JSON, browser APIs, and scraping. The goal is not to collect syntax. The goal is to build small tools you understand well enough to debug.</p>
       <nav class="quick-links" aria-label="Workspace resources">
         <a href="README.md">Workspace README</a>
+        <a href="files/JsonLearning/01-json-basics.html">JSON Basics</a>
         <a href="files/JsonLearning/JavaScript_for_the_Browser.html">Browser guide</a>
-        <a href="files/JsonLearning/learn-json.json">JSON data</a>
+        <a href="files/JsonLearning/Browser_Scraping_Academy_Enhanced.html">Scraping reference</a>
         <a href="files/datasets/airports.json">Airport data</a>
-        <a href="files/Movie-Watch-Hub/index.html">Movie Watch Hub</a>
       </nav>
     </div>
   </header>
@@ -467,7 +467,7 @@
       </div>
       <div class="card">
         <p>Once you can build and debug the Movie Watch Hub and Airport Finder, move on to regular expressions, data cleaning, modules, npm, testing, browser extensions, Playwright, Python persistence with SQLite, accessibility audits, performance, security, privacy, rate limits, and scraping ethics.</p>
-        <p>For reference material, use the existing <a href="files/Movie-Watch-Hub/Browser_Scraping_Academy_Enhanced.html">Browser Scraping Academy</a> after you have completed the application work.</p>
+        <p>For reference material, use the existing <a href="files/JsonLearning/Browser_Scraping_Academy_Enhanced.html">Browser Scraping Academy</a> after you have completed the application work.</p>
       </div>
     </section>
   </main>
@@ -624,7 +624,10 @@
       URL.revokeObjectURL(url);
     }
 
-    startDateInput.value = new Date().toISOString().slice(0, 10);
+    const today = new Date();
+    const localMonth = String(today.getMonth() + 1).padStart(2, '0');
+    const localDay = String(today.getDate()).padStart(2, '0');
+    startDateInput.value = `${today.getFullYear()}-${localMonth}-${localDay}`;
     startDateInput.addEventListener('change', renderCalendarEvents);
     downloadCalendarButton.addEventListener('click', downloadIcsFile);
     renderCalendarEvents();

@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A hands-on introduction to JSON using the learning workspace data files.">
+  <title>01 | JSON Basics</title>
+  <style>
+    :root {
+      --ink: #17221b;
+      --muted: #59655c;
+      --paper: #f6f3eb;
+      --panel: #fffdf8;
+      --line: #d9d8ca;
+      --green: #236b52;
+      --green-soft: #e2efe7;
+      --orange: #c75d2a;
+      --code: #202923;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Georgia, 'Times New Roman', serif; line-height: 1.65; }
+    a { color: var(--green); }
+    a:hover { color: var(--orange); }
+    .shell { width: min(940px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 64px 0 42px; border-bottom: 1px solid var(--line); }
+    .eyebrow { margin: 0 0 12px; color: var(--orange); font: 700 0.78rem/1.2 Arial, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; }
+    h1 { max-width: 700px; margin: 0 0 14px; font-size: clamp(2.8rem, 8vw, 5.5rem); line-height: 0.98; letter-spacing: -0.04em; }
+    h2 { margin: 48px 0 14px; padding-bottom: 8px; border-bottom: 2px solid var(--ink); font-size: 2rem; line-height: 1.1; }
+    h3 { margin-bottom: 6px; color: var(--green); }
+    .intro { max-width: 680px; color: var(--muted); font-size: 1.15rem; }
+    .nav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .nav a { padding: 8px 12px; border: 1px solid var(--green); border-radius: 999px; text-decoration: none; font: 700 0.82rem Arial, sans-serif; }
+    main { padding: 12px 0 72px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .card { padding: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
+    .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+    pre { overflow-x: auto; margin: 12px 0; padding: 18px; background: var(--code); color: #edf4ed; border-radius: 8px; font: 0.88rem/1.6 'SFMono-Regular', Consolas, monospace; }
+    code { padding: 2px 5px; background: var(--green-soft); border-radius: 3px; color: var(--green); }
+    pre code { padding: 0; background: transparent; color: inherit; }
+    .callout { margin: 18px 0; padding: 16px 20px; background: var(--green-soft); border-left: 5px solid var(--green); }
+    .checklist { padding-left: 22px; }
+    .checklist li + li { margin-top: 8px; }
+    footer { padding: 26px 0 42px; border-top: 1px solid var(--line); color: var(--muted); }
+    @media (max-width: 680px) { header { padding-top: 40px; } .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell">
+      <p class="eyebrow">Lesson 01 | Data before the interface</p>
+      <h1>JSON Basics</h1>
+      <p class="intro">JSON is a text format for moving structured data between systems. In this lesson, you will inspect real JSON, access nested values, transform arrays, and prepare data for a browser application.</p>
+      <nav class="nav" aria-label="Lesson navigation">
+        <a href="../../learning.html">Curriculum home</a>
+        <a href="learn-json.json">Open JSON data</a>
+        <a href="learn-json-annotated.js">Open annotated JavaScript</a>
+        <a href="JavaScript_for_the_Browser.html">Next: Browser JavaScript</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section aria-labelledby="goals">
+      <h2 id="goals">What you should be able to do</h2>
+      <div class="grid">
+        <article class="card"><h3>Read the shape</h3><p>Identify strings, numbers, booleans, null values, arrays, objects, and arrays of objects.</p></article>
+        <article class="card"><h3>Use the data</h3><p>Access nested properties, loop through records, filter results, and handle missing values safely.</p></article>
+        <article class="card"><h3>Move between formats</h3><p>Convert JavaScript data to JSON text with <code>JSON.stringify()</code> and parse JSON text with <code>JSON.parse()</code>.</p></article>
+        <article class="card"><h3>Prepare for the browser</h3><p>Load JSON with <code>fetch()</code> and identify the loading, success, empty, and error states an interface needs.</p></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="shape">
+      <h2 id="shape">1. Read the shape</h2>
+      <p>Open <a href="learn-json.json">learn-json.json</a> beside this page. The top level is an object with four properties: <code>student</code>, <code>company</code>, <code>products</code>, and <code>settings</code>.</p>
+      <pre><code>const studentName = data.student.name;
+const firstProduct = data.products[0].name;
+const companyEmployees = data.company.employees;</code></pre>
+      <div class="callout"><strong>Important:</strong> JSON keys and string values use double quotes. JSON does not allow comments, functions, <code>undefined</code>, or trailing commas.</div>
+    </section>
+
+    <section aria-labelledby="nested">
+      <h2 id="nested">2. Work with nested data</h2>
+      <p>The company contains an array of employee objects. Each employee has another object called <code>contact</code> and an array called <code>skills</code>.</p>
+      <pre><code>data.company.employees[0].contact.email
+// "maria@example.com"
+
+data.company.employees[1].skills[0]
+// "Java"
+
+data.company.employees.filter(employee => employee.active)
+// Maria and James</code></pre>
+      <p>Use optional chaining and nullish coalescing when a value may not exist:</p>
+      <pre><code>const phone = data.company.employees[1].contact.phone ?? 'No phone on file';</code></pre>
+    </section>
+
+    <section aria-labelledby="transform">
+      <h2 id="transform">3. Transform the collections</h2>
+      <div class="grid">
+        <article class="card"><h3>Map</h3><p>Create a new array from every item.</p><pre><code>const names = data.company.employees
+  .map(employee => `${employee.firstName} ${employee.lastName}`);</code></pre></article>
+        <article class="card"><h3>Filter</h3><p>Keep only items that match a condition.</p><pre><code>const inStock = data.products
+  .filter(product => product.inStock);</code></pre></article>
+        <article class="card"><h3>Find</h3><p>Get the first matching item.</p><pre><code>const hub = data.products
+  .find(product => product.sku === 'C300');</code></pre></article>
+        <article class="card"><h3>Reduce</h3><p>Combine items into one result.</p><pre><code>const inventoryValue = data.products
+  .reduce((total, product) => total + product.price, 0);</code></pre></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="convert">
+      <h2 id="convert">4. Convert JSON and JavaScript data</h2>
+      <p>The `.json` file is text. Once JavaScript parses it, you work with an object. The reverse conversion is useful when saving or sending data.</p>
+      <pre><code>const jsonText = JSON.stringify(data);
+const formattedText = JSON.stringify(data, null, 2);
+const parsedData = JSON.parse(jsonText);</code></pre>
+      <p>Open <a href="learn-json-annotated.js">learn-json-annotated.js</a> to compare valid JSON with the commented JavaScript version. The annotated file is easier to study, but it is not a valid JSON file because it contains comments and <code>module.exports</code>.</p>
+    </section>
+
+    <section aria-labelledby="fetch">
+      <h2 id="fetch">5. Load JSON in a browser</h2>
+      <p>When you use <code>fetch()</code>, the file can fail to load. Practice handling every state instead of assuming the request succeeds.</p>
+      <pre><code>async function loadData() {
+  try {
+    const response = await fetch('learn-json.json');
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data = await response.json();
+    console.log(data.products);
+  } catch (error) {
+    console.error('Could not load the data:', error);
+  }
+}
+
+loadData();</code></pre>
+      <div class="callout">When opening an HTML file directly, browsers may restrict <code>fetch()</code> because of local-file security rules. Use a local server for this exercise.</div>
+    </section>
+
+    <section aria-labelledby="practice">
+      <h2 id="practice">Practice before moving on</h2>
+      <ol class="checklist">
+        <li>Print the student's name, school, GPA, and courses.</li>
+        <li>List the names of all active employees.</li>
+        <li>Find every product that is in stock.</li>
+        <li>Calculate the average product price.</li>
+        <li>Display the phone number or “No phone on file” for every employee.</li>
+        <li>Change one value, stringify the object, parse it again, and verify the result.</li>
+        <li>Load the file with <code>fetch()</code> and display one product in the page.</li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="next">
+      <h2 id="next">Next lesson</h2>
+      <p>Once these exercises feel comfortable, continue to <a href="JavaScript_for_the_Browser.html">JavaScript for the Browser</a>. You will use the same arrays and objects to select DOM elements, render data, export CSV, and inspect real pages.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">Lesson 01 of the learning workspace. Build a small example, break it, and explain the repair.</div>
+  </footer>
+</body>
+</html>
